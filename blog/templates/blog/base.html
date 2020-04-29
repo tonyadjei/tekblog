@@ -7,18 +7,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">  
+        <link href="https://fonts.googleapis.com/css?family=Graduate&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
         <div class="page-header">
             {% if user.is_authenticated %}
-                <a title="New blog post" href="{% url 'post_new' %}" class="top-menu"><svg class="bi bi-plus my-add" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">      
+                <a title="Logged in as 'piety'" class="top-menu" href="#"><svg class="bi bi-person-check my-resizing" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002.002zM6 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zm6.854.146a.5.5 0 010 .708l-3 3a.5.5 0 01-.708 0l-1.5-1.5a.5.5 0 01.708-.708L12.5 7.793l2.646-2.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+</svg></a>
+                <a title="New blog post" href="{% url 'post_new' %}" class="top-menu"><svg class="bi bi-plus my-resizing" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">      
   <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
   <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd"/>
 </svg></a>
             {% endif %}
-            <h1><a href="{% url 'post_list' %}">Welcome to Tekblog!</a></h1>
+
+            {% if user.is_authenticated == False %}
+                <a class ="top-menu" href="admin/"><svg class="bi bi-person-plus my-resizing" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002.002zM6 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zm4.5 0a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V5.5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+  <path fill-rule="evenodd" d="M13 7.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clip-rule="evenodd"/>
+</svg></a>
+            {% endif %}
+
+
+            <h1><a id="my-header" href="{% url 'post_list' %}">Welcome to Tekblog!</a></h1>
+            <p id="header-title"><em>Create and Read insightful blog posts!</em></p>
+        </div>
+        <div class="search-bar">
+            <input id="search-input" type="text" name="searchfield" placeholder="Search blog posts...">
+            <button class="btn btn-outline-success" type="button">Search</button>
         </div>
         <div class="content container">
             <div class="row">
@@ -29,5 +46,8 @@
                 </div>
             </div>
         </div>
+        <footer>
+            <p>&copy; 2020 Tekblog  <a class="footer-privacy-terms" href="#">Terms</a> | <a class="footer-privacy-terms" href="#">Privacy</a></p>
+        </footer>
     </body>
 </html>
